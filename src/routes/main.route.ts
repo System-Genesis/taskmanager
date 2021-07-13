@@ -2,15 +2,23 @@ import express = require('express');
 import { Request, Response } from 'express';
 export const router = express.Router();
 
-router.use('/splitterAll', (req: Request, res: Response) => {});
-router.use('/splitterSrc', (req: Request, res: Response) => {});
-router.use('/splitterOne', (req: Request, res: Response) => {});
+router.post('/splitter/All', (req: Request, res: Response) => {});
+router.post('/splitter/Src/one', (req: Request, res: Response) => {});
+router.post('/splitter/Src/all', (req: Request, res: Response) => {});
+router.post('/splitter/One/allSource', (req: Request, res: Response) => {});
 
-router.use('/recovery/all', (req: Request, res: Response) => {});
-router.use('/recovery/src', (req: Request, res: Response) => {});
-router.use('/recovery/one', (req: Request, res: Response) => {});
-router.use('/recovery/byDate', (req: Request, res: Response) => {});
+router.get('/recovery/get/source', (req: Request, res: Response) => {});
+router.get('/recovery/one', (req: Request, res: Response) => {});
+router.get('/recovery/byDate', (req: Request, res: Response) => {});
+router.get('/recovery/get/all', (req: Request, res: Response) => {});
 
-router.use('/src/:src/identifier/:identifier', (req: Request, res: Response) => {});
+router.post('/recovery/run/all', (req: Request, res: Response) => {});
+router.post('/recovery/source', (req: Request, res: Response) => {});
+router.post('/recovery/one', (req: Request, res: Response) => {});
+router.post('/recovery/byDate', (req: Request, res: Response) => {});
+
+router.get('/py/source/:source/identifier/:identifier', (req: Request, res: Response) => {});
+router.get('/py/source/:source/', (req: Request, res: Response) => {});
+router.get('/py/identifier/:identifier', (req: Request, res: Response) => {});
 
 export default router;

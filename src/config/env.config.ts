@@ -3,6 +3,9 @@ import './dotenv';
 import * as env from 'env-var';
 
 export default {
+  splitter:{
+    baseUrl: env.get('SPLITTER_URL').required().asString(),
+  },
   rabbit: {
     uri: env.get('MATCH_TO_KART_RABBIT_URI').required().asString(),
     sendDataEntity: env.get('SEND_DATA_ENTITY').required().asString(),
