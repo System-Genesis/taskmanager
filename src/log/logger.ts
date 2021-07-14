@@ -5,7 +5,8 @@ import configEnv from '../config/env.config';
 
 const { config, format } = winston;
 
-const date = () => new Date(Date.now()).toLocaleDateString();
+const date = () =>
+  new Date(Date.now()).toLocaleDateString().replace(/\//g, '_');
 
 export const logger = winston.createLogger({
   levels: config.npm.levels,
