@@ -1,8 +1,8 @@
 import recoveryGetApi from '../api/recoveryGet.api';
 
 export default {
-  runAll: async () => recoveryGetApi.runAll(),
-  runOne: async (identifier: string) => recoveryGetApi.runOne(identifier),
-  runSource: async (source: string) => recoveryGetApi.runSource(source),
-  runDate: async (dateMS: string) => recoveryGetApi.runDate(dateMS),
+  getAll: async () => recoveryGetApi.getAll(),
+  getOne: async (identifier: string) => recoveryGetApi.getOne(identifier),
+  getSource: async (source: string) => recoveryGetApi.getSource(source),
+  getDate: async (dateMS: string) => recoveryGetApi.getDate(dateMS),
 };
