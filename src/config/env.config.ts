@@ -1,6 +1,6 @@
 import './dotenv';
 
-import * as env from 'env-var';
+import env from 'env-var';
 
 export default {
   splitter: {
@@ -13,11 +13,7 @@ export default {
     port: env.get('PORT').required().asString(),
   },
   rabbit: {
-    uri: env.get('MATCH_TO_KART_RABBIT_URI').required().asString(),
-    sendDataEntity: env.get('SEND_DATA_ENTITY').required().asString(),
-    sendDataRogd: env.get('SEND_DATA_ROGD').required().asString(),
-    getDataSelector: env.get('GET_DATA_SELECTOR').required().asString(),
-    getDataRecovery: env.get('GET_DATA_RECOVERY').required().asString(),
+    uri: env.get('RABBIT_URI').required().asString(),
     logger: env.get('LOGGER').required().asString(),
     retryOptions: {
       minTimeout: env

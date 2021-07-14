@@ -21,7 +21,7 @@ router.get('/byDate/:dateMs', (req: Request, res: Response) => {
   res.send(result);
 });
 
-router.get('/all', (req: Request, res: Response) => {
+router.get('/all', (_: Request, res: Response) => {
   const result = recoveryGetService.getAll();
 
   res.send(result);

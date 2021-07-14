@@ -1,10 +1,12 @@
 {
-  "name": "ctrlAltDelete",
+  "name": "ctrl_alt_delete",
   "version": "1.0.0",
   "description": "Task manager for traking",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "nodemon ./src/server.ts",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "dotenv-override": "^5.0.1",
     "env-var": "^7.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

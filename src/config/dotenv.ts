@@ -1,4 +1,4 @@
-import * as dotenv from 'dotenv-override';
+import dotenv from 'dotenv-override';
 import fs from 'fs';
 const dotenvPath = process.env.LOAD_DEV_DOTENV ? '.env.dev' : '.env';
 

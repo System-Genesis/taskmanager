@@ -1,7 +1,9 @@
 import { menash } from 'menashmq';
 import path from 'path';
-import winston, { config, format } from 'winston';
+import winston from 'winston';
 import configEnv from '../config/env.config';
+
+const { config, format } = winston;
 
 const date = () => new Date(Date.now()).toLocaleDateString();
 
