@@ -37,10 +37,10 @@ export default {
   runOneSource: async (source: string) => await req(source),
 
   runOneFromOneSource: async (identifier: string, source: string) => {
-    return oneFromOneSource(identifier, source);
+    return await oneFromOneSource(identifier, source);
   },
 
   runOneFromAllSource: async (identifier: string) => {
-    return oneFromOneSource(identifier, 'all');
+    return await oneFromOneSource(identifier, 'all');
   },
 };

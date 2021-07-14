@@ -3,26 +3,26 @@ import { Request, Response } from 'express';
 import recoveryGetService from '../service/recoveryGet.service';
 export const router = express.Router();
 
-router.get('/source/:source', (req: Request, res: Response) => {
-  const result = recoveryGetService.getSource(req.params.source);
+router.get('/source/:source', async (req: Request, res: Response) => {
+  const result = await recoveryGetService.getSource(req.params.source);
 
   res.send(result);
 });
 
-router.get('/identifier/:identifier', (req: Request, res: Response) => {
-  const result = recoveryGetService.getOne(req.params.identifier);
+router.get('/identifier/:identifier', async (req: Request, res: Response) => {
+  const result = await recoveryGetService.getOne(req.params.identifier);
 
   res.send(result);
 });
 
-router.get('/byDate/:dateMs', (req: Request, res: Response) => {
-  const result = recoveryGetService.getDate(req.params.dateMs);
+router.get('/byDate/:dateMs', async (req: Request, res: Response) => {
+  const result = await recoveryGetService.getDate(req.params.dateMs);
 
   res.send(result);
 });
 
-router.get('/all', (_: Request, res: Response) => {
-  const result = recoveryGetService.getAll();
+router.get('/all', async (_: Request, res: Response) => {
+  const result = await recoveryGetService.getAll();
 
   res.send(result);
 });

@@ -3,26 +3,26 @@ import { Request, Response } from 'express';
 import recoveryPostService from '../service/recoveryPost.service';
 export const router = express.Router();
 
-router.post('/all', (_: Request, res: Response) => {
-  const result = recoveryPostService.runAll();
+router.post('/all', async (_: Request, res: Response) => {
+  const result = await recoveryPostService.runAll();
 
   res.send(result);
 });
 
-router.post('/source/:source', (req: Request, res: Response) => {
-  const result = recoveryPostService.runSource(req.params.source);
+router.post('/source/:source', async (req: Request, res: Response) => {
+  const result = await recoveryPostService.runSource(req.params.source);
 
   res.send(result);
 });
 
-router.post('/identifier/:identifier', (req: Request, res: Response) => {
-  const result = recoveryPostService.runOne(req.params.identifier);
+router.post('/identifier/:identifier', async (req: Request, res: Response) => {
+  const result = await recoveryPostService.runOne(req.params.identifier);
 
   res.send(result);
 });
 
-router.post('/byDate/:dateMs', (req: Request, res: Response) => {
-  const result = recoveryPostService.runDate(req.params.dateMs);
+router.post('/byDate/:dateMs', async (req: Request, res: Response) => {
+  const result = await recoveryPostService.runDate(req.params.dateMs);
 
   res.send(result);
 });

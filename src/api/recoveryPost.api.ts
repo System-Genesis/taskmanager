@@ -5,16 +5,16 @@ import { req } from '../service/reqRecovery';
 const baseUrl = config.recovery.baseUrl + '/recovery';
 
 export default {
-  runAll: async () => req(axios.post(`${baseUrl}/run`)),
+  runAll: async () => await req(axios.post(`${baseUrl}/run`)),
 
   runOne: async (identifier: string) => {
-    return req(axios.post(`${baseUrl}/run/entity/${identifier}`));
+    return await req(axios.post(`${baseUrl}/run/entity/${identifier}`));
   },
 
   runSource: async (source: string) => {
-    return req(axios.post(`${baseUrl}/run/source/${source}`));
+    return await req(axios.post(`${baseUrl}/run/source/${source}`));
   },
   runDate: async (dateMS: string) => {
-    return req(axios.post(`${baseUrl}/run/source/${dateMS}`));
+    return await req(axios.post(`${baseUrl}/run/source/${dateMS}`));
   },
 };
