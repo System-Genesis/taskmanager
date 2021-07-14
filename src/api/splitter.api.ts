@@ -1,57 +1,46 @@
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import config from '../config/env.config';
+import { logError } from '../log/logger';
 
 const baseUrl = config.splitter.baseUrl + '/api/information';
 axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
 
-export default {
-  runAllSource: async () => {
+const req = async (dataSource: string, fields: object = {}) => {
+  try {
     const res = await axios.post(baseUrl, {
-      dataSource: 'all',
-      renuid: uuid(),
+      dataSource,
+      runUID: uuid(),
+      ...fields,
     });
-    return res;
-  },
 
-  runOneSource: async (source: string) => {
-    const res = await axios.post(baseUrl, {
-      dataSource: source,
-      renuid: uuid(),
-    });
-    return res;
-  },
+    return res.data;
+  } catch (error) {
+    logError(`Can't get response`, { error: `${error}`.split('\n') });
+    return null;
+  }
+};
+
+const oneFromOneSource = async (identifier: string, source: string) => {
+  const res = await req(source, {
+    identityCard: identifier,
+    personalNumber: identifier,
+    domainUser: identifier,
+  });
+
+  return res;
+};
+
+export default {
+  runAllSource: async () => await req('all'),
+
+  runOneSource: async (source: string) => await req(source),
 
   runOneFromOneSource: async (identifier: string, source: string) => {
-    let res = await axios.post(baseUrl, {
-      dataSource: source,
-      identityCard: identifier,
-      renuid: uuid(),
-    });
-
-    if (!res) {
-      res = await axios.post(baseUrl, {
-        dataSource: source,
-        personalNumber: identifier,
-        renuid: uuid(),
-      });
-    }
-    if (!res) {
-      res = await axios.post(baseUrl, {
-        dataSource: source,
-        domainUser: identifier,
-        renuid: uuid(),
-      });
-    }
-
-    return res;
+    return oneFromOneSource(identifier, source);
   },
 
   runOneFromAllSource: async (identifier: string) => {
-    const res = await axios.post(baseUrl, {
-      dataSource: '',
-      renuid: uuid(),
-    });
-    return res;
+    return oneFromOneSource(identifier, 'all');
   },
 };
