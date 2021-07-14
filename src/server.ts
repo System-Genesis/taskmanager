@@ -1,4 +1,4 @@
-import { connectRabbit } from './rebbit/rabbit';
+import { connectRabbit } from './rabbit/rabbit';
 import app from './app';
 import config from './config/env.config';
 
