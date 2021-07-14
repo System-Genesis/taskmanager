@@ -1,10 +1,10 @@
-import recoveryPostApi from '../api/recoveryPost.api';
+import { recovery } from '../api/recovery.api';
 
 export default {
-  runAll: async () => await recoveryPostApi.runAll(),
+  runAll: async () => await recovery.all(),
   runOne: async (identifier: string) => {
-    return await recoveryPostApi.runOne(identifier);
+    return await recovery.one(identifier);
   },
-  runSource: async (source: string) => await recoveryPostApi.runSource(source),
-  runDate: async (dateMS: string) => await recoveryPostApi.runDate(dateMS),
+  runSource: async (source: string) => await recovery.source(source),
+  runDate: async (dateMS: string) => await recovery.date(dateMS),
 };

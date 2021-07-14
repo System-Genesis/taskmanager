@@ -5,7 +5,7 @@ export const req = async (req: Promise<AxiosResponse<any>>) => {
   try {
     return (await req).data;
   } catch (error) {
-    logError(`Can't get response`, `${error}`.split('\n'));
+    logError(`Can't get response`, { url: error.config.url });
     return null;
   }
 };
