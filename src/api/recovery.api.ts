@@ -1,9 +1,15 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import config from '../config/env.config';
-import { req } from './reqRecovery';
+import { logError } from '../log/logger';
 
-const recoveryUrl = config.recovery.baseUrl + '/recovery';
-const getUrl = config.recovery.baseUrl + '/get';
+const req = async (req: Promise<AxiosResponse<any>>) => {
+  try {
+    return (await req).data;
+  } catch (error) {
+    logError(`Can't get response`, { url: error.config.url });
+    return null;
+  }
+};
 
 const api = (baseUrl: string, axiosFun: string) => ({
   all: async () => await req(axios[axiosFun](baseUrl)),
@@ -20,6 +26,9 @@ const api = (baseUrl: string, axiosFun: string) => ({
     return await req(axios[axiosFun](`${baseUrl}/source/${dateMS}`));
   },
 });
+
+const recoveryUrl = config.recovery.baseUrl + '/recovery';
+const getUrl = config.recovery.baseUrl + '/get';
 
 export const recovery = {
   all: async () => await api(recoveryUrl, 'post').all(),
