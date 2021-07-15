@@ -4,9 +4,16 @@ import getToken from '../auth/spike';
 import config from '../config/env.config';
 import { logError } from '../log/logger';
 
-const baseUrl = config.splitter.baseUrl + '/api/information';
+const splitterEnv = config.splitter;
+const baseUrl = splitterEnv.baseUrl + '/api/information';
 
-const req = async (dataSource: string, fields: object = {}) => {
+type fieldsType = {
+  identityCard?: string;
+  personalNumber?: string;
+  domainUser?: string;
+};
+
+const req = async (dataSource: string, fields: fieldsType = {}) => {
   try {
     const token: string = await getToken();
     const body = {
@@ -37,7 +44,7 @@ const oneFromOneSource = async (identifier: string, source: string) => {
 };
 
 export default {
-  runAllSource: async () => await req('all'),
+  runAllSource: async () => await req(splitterEnv.all),
 
   runOneSource: async (source: string) => await req(source),
 
@@ -46,6 +53,6 @@ export default {
   },
 
   runOneFromAllSource: async (identifier: string) => {
-    return await oneFromOneSource(identifier, 'all');
+    return await oneFromOneSource(identifier, splitterEnv.all);
   },
 };

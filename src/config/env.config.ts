@@ -5,9 +5,10 @@ import env from 'env-var';
 export default {
   splitter: {
     baseUrl: env.get('SPLITTER_URL').required().asString(),
+    all: env.get('ALL_SRC').required().asString(),
   },
-  recovery: {
-    baseUrl: env.get('RECOVERY_URL').required().asString(),
+  merger: {
+    baseUrl: env.get('MERGER_URL').required().asString(),
   },
   server: {
     port: env.get('PORT').required().asString(),

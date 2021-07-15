@@ -1,4 +1,4 @@
-import { get } from '../api/recovery.api';
+import get from '../api/mergerGet.api';
 
 export default {
   getAll: async () => await get.all(),
