@@ -1,17 +1,22 @@
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
+import getToken from '../auth/spike';
 import config from '../config/env.config';
 import { logError } from '../log/logger';
 
 const baseUrl = config.splitter.baseUrl + '/api/information';
-axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
 
 const req = async (dataSource: string, fields: object = {}) => {
   try {
-    const res = await axios.post(baseUrl, {
+    const token: string = await getToken();
+    const body = {
       dataSource,
       runUID: uuid(),
       ...fields,
+    };
+
+    const res = await axios.post(baseUrl, body, {
+      headers: { Authorization: token },
     });
 
     return res.data;

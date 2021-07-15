@@ -24,4 +24,13 @@ export default {
       factor: env.get('RABBIT_RETRY_FACTOR').default(1.8).asFloatPositive(),
     },
   },
+  spike: {
+    spikeUrl: env.get('SPIKE_URL').required().asString(),
+    redisUrl: env.get('REDIS_URL').required().asString(),
+    redisKeyName: env.get('REDIS_KEY_NAME').required().asString(),
+    myAud: env.get('MY_AUDIENCE').required().asString(),
+    clientId: env.get('MY_CLIENT_ID').required().asString(),
+    clientSecret: env.get('MY_CLIENT_SECRET').required().asString(),
+    splitterAud: env.get('SPLITTER_AUDIENCE').required().asString(),
+  },
 };

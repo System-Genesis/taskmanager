@@ -28,6 +28,7 @@
     "jsonwebtoken": "^8.5.1",
     "menashmq": "^0.1.5",
     "morgan": "^1.10.0",
+    "spike-get-token": "^1.1.13",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },

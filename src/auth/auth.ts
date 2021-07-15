@@ -2,30 +2,28 @@ import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import path from 'path';
 import { NextFunction, Request, Response } from 'express';
+import config from '../config/env.config';
 
 const errorRes = (res: Response) => res.status(401).send('Unauthorized');
 
 type payloadType = { aud: string };
 
-export const isAuth = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const isAuth = async (req: Request, res: Response, next: NextFunction) => {
   if (process.env.ENV === 'mock') return next();
 
   const token = req.header('Authorization');
-  const key = fs.readFileSync(path.join(__dirname, '../../key.pem'));
 
   try {
     if (!token) return errorRes(res);
+
+    const key = fs.readFileSync(path.join(__dirname, '../../key.pem'));
 
     const payload: payloadType = jwt.verify(
       token,
       key.toString()
     ) as payloadType;
-    payload;
-    // if (!payload || payload.aud !== myAud) return errorRes(res);
+
+    if (!payload || payload.aud !== config.spike.myAud) return errorRes(res);
 
     return next();
   } catch (err) {
@@ -33,4 +31,4 @@ export const isAuth = async (
   }
 };
 
-export default { isAuth };
+export default isAuth;
