@@ -1,40 +1,10 @@
-import axios from 'axios';
-import { v4 as uuid } from 'uuid';
-import getToken from '../auth/spike';
+import { reqSplitter } from './utilSplitter';
 import config from '../config/env.config';
-import { logError } from '../log/logger';
 
 const splitterEnv = config.splitter;
-const baseUrl = splitterEnv.baseUrl + '/api/information';
-
-type fieldsType = {
-  identityCard?: string;
-  personalNumber?: string;
-  domainUser?: string;
-};
-
-const req = async (dataSource: string, fields: fieldsType = {}) => {
-  try {
-    const token: string = await getToken();
-    const body = {
-      dataSource,
-      runUID: uuid(),
-      ...fields,
-    };
-
-    const res = await axios.post(baseUrl, body, {
-      headers: { Authorization: token },
-    });
-
-    return res.data;
-  } catch (error) {
-    logError(`Can't get response`, { error: `${error}`.split('\n') });
-    return null;
-  }
-};
 
 const oneFromOneSource = async (identifier: string, source: string) => {
-  const res = await req(source, {
+  const res = await reqSplitter(source, {
     identityCard: identifier,
     personalNumber: identifier,
     domainUser: identifier,
@@ -44,9 +14,9 @@ const oneFromOneSource = async (identifier: string, source: string) => {
 };
 
 export default {
-  runAllSource: async () => await req(splitterEnv.all),
+  runAllSource: async () => await reqSplitter(splitterEnv.all),
 
-  runOneSource: async (source: string) => await req(source),
+  runOneSource: async (source: string) => await reqSplitter(source),
 
   runOneFromOneSource: async (identifier: string, source: string) => {
     return await oneFromOneSource(identifier, source);

@@ -4,6 +4,7 @@ node_modules/
 # Transpiled files
 dist/
 
+coverage/
 # Package lock
 package-lock.json
 
