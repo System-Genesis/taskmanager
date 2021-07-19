@@ -15,6 +15,6 @@ export default {
     return await reqMerger(axios.post(`${baseUrl}/source/${source}`));
   },
   date: async (dateMS: string) => {
-    return await reqMerger(axios.post(`${baseUrl}/source/${dateMS}`));
+    return await reqMerger(axios.post(`${baseUrl}/date/${dateMS}`));
   },
 };

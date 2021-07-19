@@ -1,24 +1,12 @@
 import splitterApi from '../api/splitter.api';
 
-
 export default {
-  runAllSource: async () => {
-    const res = await splitterApi.runAllSource();
-    return res;
-  },
-
-  runOneSource: async (source: string) => {
-    const res = await splitterApi.runOneSource(source);
-    return res;
-  },
-
+  runAllSource: async () => await splitterApi.allSource(),
+  runOneSource: async (source: string) => await splitterApi.oneSource(source),
   runOneFromOneSource: async (identifier: string, source: string) => {
-    const res = await splitterApi.runOneFromOneSource(identifier, source);
-    return res;
+    return await splitterApi.oneFromOneSource(identifier, source);
   },
-
   runOneFromAllSource: async (identifier: string) => {
-    const res = await splitterApi.runOneFromAllSource(identifier);
-    return res;
+    return await splitterApi.oneFromAllSource(identifier);
   },
 };

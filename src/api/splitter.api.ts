@@ -14,15 +14,15 @@ const oneFromOneSource = async (identifier: string, source: string) => {
 };
 
 export default {
-  runAllSource: async () => await reqSplitter(splitterEnv.all),
+  allSource: async () => await reqSplitter(splitterEnv.all),
 
-  runOneSource: async (source: string) => await reqSplitter(source),
+  oneSource: async (source: string) => await reqSplitter(source),
 
-  runOneFromOneSource: async (identifier: string, source: string) => {
+  oneFromOneSource: async (identifier: string, source: string) => {
     return await oneFromOneSource(identifier, source);
   },
 
-  runOneFromAllSource: async (identifier: string) => {
+  oneFromAllSource: async (identifier: string) => {
     return await oneFromOneSource(identifier, splitterEnv.all);
   },
 };

@@ -2,6 +2,7 @@ import axios from 'axios';
 import getToken from '../auth/spike';
 import { logError } from '../log/logger';
 import config from '../config/env.config';
+import { v4 as uuid } from 'uuid';
 
 const baseUrl = config.splitter.baseUrl + '/api/information';
 
@@ -33,6 +34,3 @@ export const reqSplitter = async (
     return null;
   }
 };
-function uuid() {
-  throw new Error('Function not implemented.');
-}
