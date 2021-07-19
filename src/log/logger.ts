@@ -38,7 +38,7 @@ export const logInfo = (msg: string, any: any = '') => {
     level: 'info',
     message: `${msg}. ${any ? JSON.stringify(any) : ''}`,
     system: 'traking',
-    service: 'createRGBE',
+    service: 'TaskManager',
     extraFields: any,
   });
 
