@@ -3,6 +3,10 @@ import './dotenv';
 import env from 'env-var';
 
 export default {
+  daily: {
+    hour: env.get('DAILY_HOUR').required().asInt(),
+    minute: env.get('DAILY_MINUTE').required().asInt(),
+  },
   splitter: {
     baseUrl: env.get('SPLITTER_URL').required().asString(),
     all: env.get('ALL_SRC').required().asString(),

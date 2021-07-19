@@ -1,6 +1,7 @@
 import { connectRabbit } from './rabbit/rabbit';
 import app from './app';
 import config from './config/env.config';
+import { DailyRun } from './util/DailyRun';
 
 require('dotenv').config();
 
@@ -11,6 +12,8 @@ const start = async () => {
   app.listen(PORT, () => {
     console.log('Listening on port: ' + PORT);
   });
+
+  DailyRun.getInstance().start();
 };
 
 start();
