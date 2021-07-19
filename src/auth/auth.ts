@@ -27,7 +27,7 @@ const isAuth = async (req: Request, res: Response, next: NextFunction) => {
 
     return next();
   } catch (err) {
-    return next(err);
+    return errorRes(res);
   }
 };
 
