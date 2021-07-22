@@ -1,30 +1,17 @@
+import { catchError } from './catchError';
 import express = require('express');
-import { Request, Response } from 'express';
-import mergerPostService from '../service/mergerPost.service';
+import mergerPostController from '../controller/merger.post.controller';
 export const router = express.Router();
 
-router.post('/all', async (_: Request, res: Response) => {
-  const result = await mergerPostService.runAll();
+router.post('/all', catchError(mergerPostController.all));
 
-  res.send(result);
-});
+router.post('/source/:source', catchError(mergerPostController.source));
 
-router.post('/source/:source', async (req: Request, res: Response) => {
-  const result = await mergerPostService.runSource(req.params.source);
+router.post(
+  '/identifier/:identifier',
+  catchError(mergerPostController.identifier)
+);
 
-  res.send(result);
-});
-
-router.post('/identifier/:identifier', async (req: Request, res: Response) => {
-  const result = await mergerPostService.runOne(req.params.identifier);
-
-  res.send(result);
-});
-
-router.post('/byDate/:dateMs', async (req: Request, res: Response) => {
-  const result = await mergerPostService.runDate(req.params.dateMs);
-
-  res.send(result);
-});
+router.post('/byDate/:dateMs', catchError(mergerPostController.dateMs));
 
 export default router;

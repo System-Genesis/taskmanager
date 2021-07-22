@@ -5,7 +5,7 @@ import { DailyRun } from './util/DailyRun';
 
 require('dotenv').config();
 
-const PORT = config.server.port || 7705;
+const PORT = config.server.port || 7706;
 
 const start = async () => {
   await connectRabbit();

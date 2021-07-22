@@ -1,30 +1,18 @@
+import { catchError } from './catchError';
 import express = require('express');
-import { Request, Response } from 'express';
-import mergerGetService from '../service/mergerGet.service';
+
+import mergerGetController from '../controller/merger.get.controller';
 export const router = express.Router();
 
-router.get('/all', async (_: Request, res: Response) => {
-  const result = await mergerGetService.getAll();
+router.get('/all', catchError(mergerGetController.all));
 
-  res.send(result);
-});
+router.get('/source/:source', catchError(mergerGetController.source));
 
-router.get('/source/:source', async (req: Request, res: Response) => {
-  const result = await mergerGetService.getSource(req.params.source);
+router.get(
+  '/identifier/:identifier',
+  catchError(mergerGetController.identifier)
+);
 
-  res.send(result);
-});
-
-router.get('/identifier/:identifier', async (req: Request, res: Response) => {
-  const result = await mergerGetService.getOne(req.params.identifier);
-
-  res.send(result);
-});
-
-router.get('/byDate/:dateMs', async (req: Request, res: Response) => {
-  const result = await mergerGetService.getDate(req.params.dateMs);
-
-  res.send(result);
-});
+router.get('/byDate/:dateMs', catchError(mergerGetController.dateMs));
 
 export default router;

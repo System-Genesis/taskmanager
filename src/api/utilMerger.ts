@@ -5,7 +5,13 @@ export const reqMerger = async (req: Promise<AxiosResponse<any>>) => {
   try {
     return (await req).data;
   } catch (error) {
-    logError(`Can't get response`, { url: error.config.url });
-    throw error;
+    const errorRes = {
+      url: error.config.url,
+      errMessage: error.message,
+    };
+
+    logError(`Can't get response `, errorRes);
+
+    throw errorRes;
   }
 };

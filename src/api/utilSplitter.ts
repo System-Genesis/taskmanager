@@ -12,10 +12,7 @@ type fieldsType = {
   domainUser?: string;
 };
 
-export const reqSplitter = async (
-  dataSource: string,
-  fields: fieldsType = {}
-) => {
+export const reqSplitter = async (dataSource: string, fields: fieldsType = {}) => {
   try {
     const token: string = await getToken();
     const body = {
@@ -30,7 +27,10 @@ export const reqSplitter = async (
 
     return res.data;
   } catch (error) {
-    logError(`Can't get response`, { error: `${error}`.split('\n') });
-    return null;
+    const errorRes = { url: error.config.url, errMessage: error.message };
+
+    logError(`Can't get response`, errorRes);
+
+    throw errorRes;
   }
 };

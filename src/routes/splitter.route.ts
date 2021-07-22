@@ -1,37 +1,20 @@
+import { catchError } from './catchError';
 import express = require('express');
-import { Request, Response } from 'express';
-import splitterService from '../service/splitter.service';
+import splitterController from '../controller/splitter.controller';
 export const router = express.Router();
 
-router.post('/all', async (_: Request, res: Response) => {
-  const result = await splitterService.runAllSource();
+router.post('/all', catchError(splitterController.all));
 
-  res.send(result);
-});
-
-router.post('/source/:source', async (req: Request, res: Response) => {
-  const result = await splitterService.runOneSource(req.params.source);
-
-  res.send(result);
-});
+router.post('/source/:source', catchError(splitterController.source));
 
 router.post(
   '/identifier/:id/source/:source',
-  async (req: Request, res: Response) => {
-    const { id, source } = req.params;
-
-    const result = await splitterService.runOneFromOneSource(id, source);
-
-    res.send(result);
-  }
+  catchError(splitterController.oeFromOneSource)
 );
 
-router.post('/identifier/:identifier', async (req: Request, res: Response) => {
-  const identifier = req.params.identifier;
-
-  const result = await splitterService.runOneFromAllSource(identifier);
-
-  res.send(result);
-});
+router.post(
+  '/identifier/:identifier',
+  catchError(splitterController.oneFromAllSource)
+);
 
 export default router;
