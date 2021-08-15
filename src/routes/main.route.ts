@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.use('/splitter', splitterRoute);
 router.use('/recovery', mergerPostRoute);
-router.use('/get', mergerGetRoute);
+router.use('/mergedUsers', mergerGetRoute);
 router.use('/daily', dailyRoute);
 // router.use('/py', pyRoute);
 
