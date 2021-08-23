@@ -16,7 +16,7 @@ const isAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (!token) return errorRes(res);
 
-    const key = fs.readFileSync(path.join(__dirname, '../key/key.pem');
+    const key = fs.readFileSync(path.join(__dirname, '../key/key.pem'));
 
     const payload: payloadType = jwt.verify(
       token,
