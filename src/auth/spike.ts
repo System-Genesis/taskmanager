@@ -12,7 +12,7 @@ const options = {
   tokenGrantType: 'client_credentials',
   tokenAudience: spike.splitterAud,
   tokenRedisKeyName: spike.redisKeyName,
-  spikePublicKeyFullPath: path.join(__dirname, '../../key.pem'),
+  spikePublicKeyFullPath: path.join(__dirname, '../key/key.pem'),
   useRedis: true,
   httpsValidation: false,
 };
