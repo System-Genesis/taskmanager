@@ -14,6 +14,8 @@ app.use('/isAlive', (_req, res) => {
   res.status(200).send('alive');
 });
 
+console.log(Date.now());
+
 app.use('*', (_req, res) => {
   res.status(404).send('Invalid Route');
 });
