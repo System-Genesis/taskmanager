@@ -6,6 +6,7 @@ export default {
   daily: {
     hour: env.get('DAILY_HOUR').required().asInt(),
     minute: env.get('DAILY_MINUTE').required().asInt(),
+    tz: env.get('HOUR_TIME_ZONE_DIF').required().asInt(),
   },
   splitter: {
     baseUrl: env.get('SPLITTER_URL').required().asString(),
