@@ -31,6 +31,7 @@
     "morgan": "^1.10.0",
     "node-schedule": "^2.0.0",
     "spike-get-token": "^1.1.13",
+    "spike-token-manager": "0.0.5",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },

@@ -16,6 +16,6 @@ const start = async () => {
   DailyRun.getInstance().start();
 };
 
-start();
+start().catch(console.log);
 
 export default start;
