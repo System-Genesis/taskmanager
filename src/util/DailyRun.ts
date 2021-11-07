@@ -31,13 +31,10 @@ export class DailyRun {
 
   public async start() {
     logInfo(`Daily run scheduled to ${this.hour}:${this.minute}`);
-    this.runFunc = schedule.scheduleJob(
-      { hour: this.fixHour(this.hour), minute: this.minute },
-      () => {
-        logInfo('Daily run is starting');
-        splitterService.runAllSource();
-      }
-    );
+    this.runFunc = schedule.scheduleJob({ hour: this.fixHour(this.hour), minute: this.minute }, () => {
+      logInfo('Daily run is starting');
+      splitterService.runAllSource('POST');
+    });
   }
 
   public changeRunTime(hour: number, minute: number) {

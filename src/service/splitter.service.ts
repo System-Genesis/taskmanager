@@ -1,12 +1,13 @@
 import splitterApi from '../api/splitter.api';
+import { axiosReq } from '../util/types';
 
 export default {
-  runAllSource: async () => await splitterApi.allSource(),
-  runOneSource: async (source: string) => await splitterApi.oneSource(source),
-  runOneFromOneSource: async (identifier: string, source: string) => {
-    return await splitterApi.oneFromOneSource(identifier, source);
+  runAllSource: async (axiosType: axiosReq) => await splitterApi.allSource(axiosType),
+  runOneSource: async (axiosType: axiosReq, source: string) => await splitterApi.oneSource(axiosType, source),
+  runOneFromOneSource: async (axiosType: axiosReq, identifier: string, source: string) => {
+    return await splitterApi.oneFromOneSource(axiosType, identifier, source);
   },
-  runOneFromAllSource: async (identifier: string) => {
-    return await splitterApi.oneFromAllSource(identifier);
+  runOneFromAllSource: async (axiosType: axiosReq, identifier: string) => {
+    return await splitterApi.oneFromAllSource(axiosType, identifier);
   },
 };
