@@ -1,10 +1,11 @@
 import { reqSplitter } from './utilSplitter';
 import config from '../config/env.config';
+import { axiosReq } from '../util/types';
 
 const splitterEnv = config.splitter;
 
-const oneFromOneSource = async (identifier: string, source: string) => {
-  const res = await reqSplitter(source, {
+const oneFromOneSource = async (axiosType: axiosReq, identifier: string, source: string) => {
+  const res = await reqSplitter(axiosType, source, {
     identityCard: identifier,
     personalNumber: identifier,
     domainUser: identifier,
@@ -14,15 +15,15 @@ const oneFromOneSource = async (identifier: string, source: string) => {
 };
 
 export default {
-  allSource: async () => await reqSplitter(splitterEnv.all),
+  allSource: async (axiosType: axiosReq) => await reqSplitter(axiosType, splitterEnv.all),
 
-  oneSource: async (source: string) => await reqSplitter(source),
+  oneSource: async (axiosType: axiosReq, source: string) => await reqSplitter(axiosType, source),
 
-  oneFromOneSource: async (identifier: string, source: string) => {
-    return await oneFromOneSource(identifier, source);
+  oneFromOneSource: async (axiosType: axiosReq, identifier: string, source: string) => {
+    return await oneFromOneSource(axiosType, identifier, source);
   },
 
-  oneFromAllSource: async (identifier: string) => {
-    return await oneFromOneSource(identifier, splitterEnv.all);
+  oneFromAllSource: async (axiosType: axiosReq, identifier: string) => {
+    return await oneFromOneSource(axiosType, identifier, splitterEnv.all);
   },
 };

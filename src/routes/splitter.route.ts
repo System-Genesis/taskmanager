@@ -7,14 +7,16 @@ router.post('/all', catchError(splitterController.all));
 
 router.post('/source/:source', catchError(splitterController.source));
 
-router.post(
-  '/identifier/:id/source/:source',
-  catchError(splitterController.oeFromOneSource)
-);
+router.post('/identifier/:id/source/:source', catchError(splitterController.oeFromOneSource));
 
-router.post(
-  '/identifier/:identifier',
-  catchError(splitterController.oneFromAllSource)
-);
+router.post('/identifier/:identifier', catchError(splitterController.oneFromAllSource));
+
+router.get('/all', catchError(splitterController.all));
+
+router.get('/source/:source', catchError(splitterController.source));
+
+router.get('/identifier/:id/source/:source', catchError(splitterController.oeFromOneSource));
+
+router.get('/identifier/:identifier', catchError(splitterController.oneFromAllSource));
 
 export default router;
