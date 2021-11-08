@@ -21,13 +21,26 @@ export const reqSplitter = async (axiosType: axiosReq, dataSource: string, field
       ...fields,
     };
 
-    const res = await axios[axiosType.toLowerCase()](baseUrl, {
-      params: { ...body },
-      headers: {
-        runUID: uuid(),
-        Authorization: token,
-      },
-    });
+    const res =
+      axiosType.toLowerCase() == 'post'
+        ? await axios.post(
+            baseUrl,
+            {},
+            {
+              params: { ...body },
+              headers: {
+                runUID: uuid(),
+                Authorization: token,
+              },
+            }
+          )
+        : await axios.get(baseUrl, {
+            params: { ...body },
+            headers: {
+              runUID: uuid(),
+              Authorization: token,
+            },
+          });
 
     return res.data;
   } catch (error: any) {
