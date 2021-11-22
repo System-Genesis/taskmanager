@@ -1,4 +1,4 @@
-name: "taskManager"
+name: "task-manager"
 replicaCount: 1
 
 images:
@@ -14,7 +14,7 @@ service:
     port: 3000
 
 volume:
-  - name: taskManager-volume 
+  - name: task-manager-volume 
     mountPath: /dist/key/key 
     secretName: azure-secret 
     shareName: system-genesis/
@@ -22,7 +22,7 @@ volume:
 
 config:
   configmaps: 
-    name: taskManager
+    name: task-manager
 
 # ingress:
 #   enabled: true
