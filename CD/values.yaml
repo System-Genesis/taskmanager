@@ -15,7 +15,7 @@ service:
 
 volume:
   - name: task-manager-volume 
-    mountPath: /dist/key/key 
+    mountPath: /dist/key
     secretName: azure-secret 
     shareName: system-genesis/
     type: azurefile 
