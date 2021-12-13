@@ -11,7 +11,7 @@ service:
   type: ClusterIP
   ports:
   - name: http
-    port: 3000
+    port: 80
 
 volume:
   - name: task-manager-volume 
@@ -24,12 +24,12 @@ config:
   configmaps: 
     name: task-manager
 
-# ingress:
-#   enabled: true
-#   hosts:
-#   - host: test-cd.branch-yesodot.org
-#     paths:
-#       - path: /
-#         service: taskManager
-#         port: "3000"
+ingress:
+  enabled: true
+  hosts:
+  - host: tracking.branch-yesodot.org
+    paths:
+      - path: /
+        service: taskManager
+        port: "80"
   
