@@ -10,7 +10,7 @@ images:
 service:
   type: ClusterIP
   ports:
-  - name: taskManager
+  - name: taskmanager
     port: 80
 
 volume:
@@ -30,6 +30,6 @@ ingress:
   - host: genesis-tracking.branch-yesodot.org
     paths:
       - path: /
-        service: taskManager
+        service: taskmanager
         port: "80"
   
