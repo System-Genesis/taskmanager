@@ -27,7 +27,7 @@ config:
 ingress:
   enabled: true
   hosts:
-  - host: genesis.tracking.branch-yesodot.org
+  - host: genesis-tracking.branch-yesodot.org
     paths:
       - path: /
         service: taskManager
