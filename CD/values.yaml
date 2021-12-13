@@ -17,7 +17,7 @@ volume:
   - name: task-manager-volume 
     mountPath: /dist/key
     secretName: azure-secret 
-    shareName: system-genesis/
+    shareName: system-genesis/spikeKey
     type: azurefile 
 
 config:
