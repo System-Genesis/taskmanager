@@ -10,7 +10,10 @@ export default {
   runOneFromAllSource: async (axiosType: axiosReq, identifier: string) => {
     return await splitterApi.oneFromAllSource(axiosType, identifier);
   },
-  runDiFromSource: async (axiosType: axiosReq, digitalIdentity: string) => {
-    return await splitterApi.byDigitalIdentity(axiosType, digitalIdentity);
+  runDiFromSourceAll: async (axiosType: axiosReq, digitalIdentity: string) => {
+    return await splitterApi.byDigitalIdentityAll(axiosType, digitalIdentity);
+  },
+  runDiFromSourceOneSource: async (axiosType: axiosReq, digitalIdentity: string, source: string) => {
+    return await splitterApi.byDigitalIdentityOneSource(axiosType, digitalIdentity, source);
   },
 };
