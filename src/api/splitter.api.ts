@@ -4,10 +4,18 @@ import { axiosReq } from '../util/types';
 
 const splitterEnv = config.splitter;
 
-const oneFromOneSource = async (axiosType: axiosReq, identifier: string, source: string) => {
+const oneFromSource = async (axiosType: axiosReq, identifier: string, source: string) => {
   const res = await reqSplitter(axiosType, source, {
     identityCard: identifier,
     personalNumber: identifier,
+    domainUser: identifier,
+  });
+
+  return res;
+};
+
+const diFromSource = async (axiosType: axiosReq, identifier: string, source: string) => {
+  const res = await reqSplitter(axiosType, source, {
     domainUser: identifier,
   });
 
@@ -20,10 +28,13 @@ export default {
   oneSource: async (axiosType: axiosReq, source: string) => await reqSplitter(axiosType, source),
 
   oneFromOneSource: async (axiosType: axiosReq, identifier: string, source: string) => {
-    return await oneFromOneSource(axiosType, identifier, source);
+    return await oneFromSource(axiosType, identifier, source);
   },
 
   oneFromAllSource: async (axiosType: axiosReq, identifier: string) => {
-    return await oneFromOneSource(axiosType, identifier, splitterEnv.all);
+    return await oneFromSource(axiosType, identifier, splitterEnv.all);
   },
+  byDigitalIdentity: async (axiosType: axiosReq, domainUser: string) => {
+    return await diFromSource(axiosType, domainUser, splitterEnv.all);
+  }
 };

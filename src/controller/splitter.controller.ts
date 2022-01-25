@@ -34,4 +34,13 @@ const oneFromAllSource = async (req: Request, res: Response) => {
   res.send(result);
 };
 
-export default { all, source, oeFromOneSource: oneFromOneSource, oneFromAllSource };
+const diFromSource = async (req: Request, res: Response) => {
+  const axiosType: axiosReq = req.method as axiosReq;
+  const digitalIdentity = req.params.digitalIdentity;
+
+  const result = await splitterService.runDiFromSource(axiosType, digitalIdentity);
+
+  res.send(result);
+};
+
+export default { all, source, oeFromOneSource: oneFromOneSource, oneFromAllSource, diFromSource };
