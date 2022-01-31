@@ -5,7 +5,7 @@ import { reqMerger } from './utilMerger';
 
 const baseUrl = {
   post: config.merger.baseUrl + '/recovery',
-  get: config.merger.baseUrl + '/mergedUsers',
+  get: config.merger.baseUrl + '/get',
 };
 
 export default {
