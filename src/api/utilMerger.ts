@@ -4,7 +4,7 @@ import { logError } from '../log/logger';
 export const reqMerger = async (req: Promise<AxiosResponse<any>>) => {
   try {
     return (await req).data;
-  } catch (error) {
+  } catch (error: any) {
     const errorRes = {
       url: error.config.url,
       errMessage: error.message,
