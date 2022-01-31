@@ -12,3 +12,5 @@ log/
 .log
 
 getToken.js
+docker-compose.yml
+variables.env

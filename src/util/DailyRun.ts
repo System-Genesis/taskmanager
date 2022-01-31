@@ -33,7 +33,7 @@ export class DailyRun {
     logInfo(`Daily run scheduled to ${this.hour}:${this.minute}`);
     this.runFunc = schedule.scheduleJob({ hour: this.fixHour(this.hour), minute: this.minute }, () => {
       logInfo('Daily run is starting');
-      splitterService.runAllSource('POST');
+      splitterService.runAllSource('post');
     });
   }
 

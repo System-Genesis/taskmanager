@@ -7,11 +7,10 @@ router.post('/all', catchError(mergerPostController.all));
 
 router.post('/source/:source', catchError(mergerPostController.source));
 
-router.post(
-  '/identifier/:identifier',
-  catchError(mergerPostController.identifier)
-);
+router.post('/identifier/:identifier', catchError(mergerPostController.identifier));
 
 router.post('/byDate/:dateMs', catchError(mergerPostController.dateMs));
+
+router.post('/source/:source/digitalIdentity/:digitalIdentityUniqueId', catchError(mergerPostController.diBySource));
 
 export default router;

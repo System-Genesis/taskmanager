@@ -1,1 +1,1 @@
-export type axiosReq = 'GET' | 'POST';
+export type axiosReq = 'get' | 'post';

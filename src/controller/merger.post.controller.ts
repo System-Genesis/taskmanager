@@ -25,4 +25,10 @@ const dateMs = async (req: Request, res: Response) => {
   res.json(result);
 };
 
-export default { all, source, identifier, dateMs };
+const diBySource = async (req: Request, res: Response) => {
+  const result = await mergerPostService.diBySource(req.params.source, req.params.digitalIdentityUniqueId);
+
+  res.send(result);
+};
+
+export default { all, source, identifier, dateMs, diBySource };
