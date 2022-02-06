@@ -5,7 +5,7 @@ import isAuth from './auth/auth';
 import { Request, Response } from 'express';
 import akaFile from './api/akaFile';
 
-const app = express();
+export const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 

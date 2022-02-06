@@ -8,14 +8,13 @@ const oneFromSource = async (axiosType: axiosReq, identifier: string, source: st
   const res = await reqSplitter(axiosType, source, {
     identityCard: identifier,
     personalNumber: identifier,
-    domainUser: identifier,
   });
 
   return res;
 };
 
 const diFromSource = async (axiosType: axiosReq, domainUser: string, source: string) => {
-  const res = await reqSplitter(axiosType, source, { domainUser, });
+  const res = await reqSplitter(axiosType, source, { domainUser });
 
   return res;
 };
@@ -37,5 +36,5 @@ export default {
   },
   byDigitalIdentityOneSource: async (axiosType: axiosReq, domainUser: string, source: string) => {
     return await diFromSource(axiosType, domainUser, source);
-  }
+  },
 };
