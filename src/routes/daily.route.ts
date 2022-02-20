@@ -1,26 +1,30 @@
 import { DailyRun } from './../util/DailyRun';
 import express = require('express');
 import { Request, Response } from 'express';
+import Joi = require('joi');
+import { dailyReq } from '../util/types';
 export const router = express.Router();
 
-const format = (number: number) => number.toString().padStart(2, '0');
-
-router.post('/hour/:hour/minute/:minute', async (req: Request, res: Response) => {
+router.post('', async (req: Request, res: Response) => {
   try {
-    const hour = parseInt(req.params.hour);
-    const minute = parseInt(req.params.minute);
+    const body = req.body as dailyReq;
 
-    if (hour > 23 || hour < 0) {
-      throw new Error('Hour must be between 0 and 23');
-    }
+    const schema = Joi.object({
+      hour: Joi.number().min(0).max(23),
+      minute: Joi.number().min(0).max(59),
+      date: Joi.number().min(1).max(31),
+      second: Joi.number().min(0).max(59),
+      month: Joi.number().min(0).max(11),
+      dayOfWeek: Joi.number().min(0).max(6),
+    });
 
-    if (minute > 59 || minute < 0) {
-      throw new Error('Minute must be between 0 and 59');
-    }
+    const { error, value } = schema.validate(body);
 
-    DailyRun.getInstance().changeRunTime(hour, minute);
+    if (error) throw error;
 
-    res.send(`Daily run scheduled to ${format(hour)}:${format(minute)}`);
+    DailyRun.getInstance().changeRunTime(value as dailyReq);
+
+    res.send(`Daily run scheduled to ${JSON.stringify(body)}`);
   } catch (error: any) {
     res.status(400).send(error.message);
   }

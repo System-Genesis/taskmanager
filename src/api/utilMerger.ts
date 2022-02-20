@@ -12,6 +12,6 @@ export const reqMerger = async (req: Promise<AxiosResponse<any>>) => {
 
     logError(`Can't get response `, errorRes);
 
-    throw errorRes;
+    throw error.message;
   }
 };

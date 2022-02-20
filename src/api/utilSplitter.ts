@@ -16,10 +16,7 @@ type fieldsType = {
 export const reqSplitter = async (axiosType: axiosReq, dataSource: string, fields: fieldsType = {}) => {
   try {
     const token: string = await getToken();
-    const body = {
-      dataSource,
-      ...fields,
-    };
+    const body = { dataSource, ...fields };
 
     const res =
       axiosType.toLowerCase() == 'post'

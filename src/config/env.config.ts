@@ -4,6 +4,7 @@ import env from 'env-var';
 
 export default {
   akaUrl: env.get('AKA_URL').required().asString(),
+  redisUrl: env.get('REDIS_URL').required().asString(),
   daily: {
     hour: env.get('DAILY_HOUR').required().asInt(),
     minute: env.get('DAILY_MINUTE').required().asInt(),
