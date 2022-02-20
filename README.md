@@ -1,13 +1,13 @@
 # ctrlAltDelete
 
-Task manager for traking
+Task manager for traking.
 
-start the daily pncy tun
-handle all TRAKING action
------ splitter GET & POST from PNCY
------ recovery run merged objects
------ mergedUsers get merged objects
------ change the daily run of pncy
+start the daily pncy tun.
+handle all TRAKING action.
+- ---- splitter GET & POST from PNCY
+- ---- recovery run merged objects
+- ---- mergedUsers get merged objects
+- ---- change the daily run of pncy
 
 ROUTES:
 
