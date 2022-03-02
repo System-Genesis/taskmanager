@@ -10,12 +10,12 @@ router.post('', async (req: Request, res: Response) => {
     const body = req.body as dailyReq;
 
     const schema = Joi.object({
-      hour: Joi.number().min(0).max(23),
-      minute: Joi.number().min(0).max(59),
-      date: Joi.number().min(1).max(31),
-      second: Joi.number().min(0).max(59),
-      month: Joi.number().min(0).max(11),
-      dayOfWeek: Joi.number().min(0).max(6),
+      hour: Joi.alternatives().try(Joi.array().items(Joi.number().min(0).max(23)), Joi.number().min(0).max(23)),
+      minute: Joi.alternatives().try(Joi.array().items(Joi.number().min(0).max(59)), Joi.number().min(0).max(59)),
+      date: Joi.alternatives().try(Joi.array().items(Joi.number().min(1).max(31)), Joi.number().min(1).max(31)),
+      second: Joi.alternatives().try(Joi.array().items(Joi.number().min(0).max(59)), Joi.number().min(0).max(59)),
+      month: Joi.alternatives().try(Joi.array().items(Joi.number().min(0).max(11)), Joi.number().min(0).max(11)),
+      dayOfWeek: Joi.alternatives().try(Joi.array().items(Joi.number().min(0).max(6)), Joi.number().min(0).max(6)),
     });
 
     const { error, value } = schema.validate(body);
