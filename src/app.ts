@@ -4,6 +4,7 @@ import router from './routes/main.route';
 import isAuth from './auth/auth';
 import { Request, Response } from 'express';
 import akaFile from './api/akaFile';
+import checkConnections from './util/checkConnections';
 
 export const app = express();
 app.use(express.json());
@@ -18,7 +19,7 @@ app.use(isAuth);
 app.use('/api', router);
 
 app.use('/isAlive', (_req, res) => {
-  res.status(200).send('alive');
+  res.send(checkConnections() ? 'OK' : 'Not OK')
 });
 
 app.use('*', (_req, res) => {

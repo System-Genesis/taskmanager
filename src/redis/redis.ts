@@ -5,9 +5,10 @@ import { dailyReq } from '../util/types';
 
 export let getDailyParam: () => Promise<dailyReq>;
 export let setDailyParam: (param: dailyReq) => Promise<dailyReq>;
+export let client: redis.RedisClient;
 
 const redisClient = (cb?: any) => {
-  const client = redis.createClient(envConfig.redisUrl);
+  client = redis.createClient(envConfig.redisUrl);
 
   client.on('connect', () => {
     console.log('Redis connected (di to entity)');
